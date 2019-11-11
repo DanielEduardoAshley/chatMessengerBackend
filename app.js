@@ -1,29 +1,17 @@
-const express = require('express');
-const messageRoute = require('./routes/messages')
+const express = require("express");
+const rootRoute = require("./routes/rootRoute");
+const bodyParser = require('body-parser');
+const cors = require('cors')
 const app = express();
-const port = 3003
-
-app.use(messageRoute, '/')
-
-
-app.post(()=>{
-
-})
-
-app.get(()=>{
-
-})
-
-app.put(()=>{
-
-})
+app.use(cors())
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
+app.use("/", rootRoute);
 
 
-app.delete(()=>{
-
-})
 
 
-app.listen(port, ()=>{
-    console.log(`Listening at port ${port}`)
-})
+
+module.exports = { app }

@@ -1,22 +1,20 @@
-const pg = require('pg-promise')({})
+const pg = require("pg-promise")({});
+const db = pg("postgres://localhost/chatapp")
 
-const oncify = (conn)=>{
-  let checkConn = null
+const oncify = conn => {
+  let checkConn = null;
 
-  const connection =()=>{
-        if(!checkConn){
-            const db = pg(conn)
-            checkConn = 1
-            return db
-        }
-        return db
+  const connection = () => {
+    if (!checkConn) {
+      const db = pg(conn);
+      checkConn = 1;
+      return db;
+    }
+    return db;
+  };
+  return connection;
+};
 
-  }
-  return connection
+const newConn = oncify("postgres://localhost/chatapp");
 
-}
-
-const newConn = oncify('postgres://localhost/chatapp')
-
-
-export default newConn
+module.exports = db;

@@ -1,15 +1,18 @@
-import newConn from './dbconnection'
+const newConn = require("./dbconnection");
 
-messages = {}
+const messages = {};
 
-messages.createMessages = (textbody, userid)=>{
+messages.createMessages = (textbody, userid) => {
+  return newConn.none(
+    "INSERT INTO messages VALUES(text_body=${textbody}, user_id=${userid})",
+    { textbody, userid }
+  );
+};
 
-    return newConn.none('INSERT INTO messages VALUES(text_body=${textbody}, user_id=${userid})',{textbody, userid})
-}
+messages.getMessages = () => {
+  return newConn.any(
+    "SELECT * FROM messages JOIN users ON user_id = users.id ORDER BY time_posted DESC"
+  );
+};
 
-messages.getMessages = () =>{
-
-    return newConn.any('SELECT * FROM messages JOIN ON users WHERE user_id=user.id time_posted DESC')
-}
-
-export default messages
+module.exports = { messages };
