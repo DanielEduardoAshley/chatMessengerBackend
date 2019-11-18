@@ -4,7 +4,7 @@ const messages = {};
 
 messages.createMessages = (textbody, userid) => {
   return newConn.none(
-    "INSERT INTO messages VALUES(text_body=${textbody}, user_id=${userid})",
+    "INSERT INTO messages (text_body, user_id) VALUES (${textbody}, ${userid})",
     { textbody, userid }
   );
 };
