@@ -29,11 +29,11 @@ rootRoute.post('/user', async(req, res)=>{
 })
 
 rootRoute.post('/message', (req, res)=>{
-    const {textbody} = req.body
-    const {userid} = req.body
-    console.log('kl',textbody, userid)
+    const {text_body} = req.body
+    const {user_id} = req.body
+    console.log('kl',text_body, user_id)
 
-    messages.createMessages(textbody, userid).then(()=>{
+    messages.createMessages(text_body, user_id).then(()=>{
         res.status(200).json('msgcreated')
     })
     .catch(err=>{

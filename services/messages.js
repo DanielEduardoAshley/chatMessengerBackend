@@ -11,7 +11,7 @@ messages.createMessages = (textbody, userid) => {
 
 messages.getMessages = () => {
   return newConn.any(
-    "SELECT * FROM messages JOIN users ON user_id = users.id ORDER BY time_posted DESC"
+    "SELECT * FROM messages JOIN users ON user_id = users.id ORDER BY time_posted ASC"
   );
 };
 
